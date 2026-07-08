@@ -1,130 +1,441 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <!-- Always force latest IE rendering engine or request Chrome Frame -->
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalama Occupational Therapy | Nairobi</title>
+<meta name="description" content="Occupational therapy services in Nairobi — pediatric, physical dysfunction, and family therapy with Fredrick Kalama.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1F3A38;
+    --ink-soft:#3A5654;
+    --sand:#F3EEE3;
+    --sand-deep:#E9E1D0;
+    --sage:#7C9A82;
+    --rust:#A85C3F;
+    --rust-dark:#8B4A32;
+    --white:#FFFFFF;
+    --line:rgba(31,58,56,0.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Public Sans',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; color:var(--ink); font-weight:600; letter-spacing:-0.01em;}
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--rust);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--rust);
+    display:inline-block;
+  }
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  :focus-visible{outline:2px solid var(--rust); outline-offset:3px;}
 
-    <!-- Use title if it's in the page YAML frontmatter -->
-    <title>Welcome to XAMPP</title>
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(243,238,227,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;}
+  .logo svg{width:30px;height:30px;flex-shrink:0;}
+  .nav-links{display:flex; gap:32px; font-size:0.92rem;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color 0.2s;}
+  .nav-links a:hover{color:var(--rust);}
+  .nav-cta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    background:var(--ink);
+    color:var(--sand);
+    padding:9px 18px;
+    border-radius:2px;
+    text-decoration:none;
+    letter-spacing:0.03em;
+    transition:background 0.2s;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--rust);}
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:4px;}
+  .menu-toggle svg{width:26px;height:26px;}
 
-    <meta name="description" content="XAMPP is an easy to install Apache distribution containing MariaDB, PHP and Perl." />
-    <meta name="keywords" content="xampp, apache, php, perl, mariadb, open source distribution" />
+  /* HERO */
+  .hero{position:relative; overflow:hidden; padding:96px 0 80px;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
+  .hero h1{font-size:clamp(2.2rem, 4.2vw, 3.4rem); line-height:1.08; margin:18px 0 22px;}
+  .hero h1 em{font-style:normal; color:var(--rust);}
+  .hero p.lead{font-size:1.12rem; color:var(--ink-soft); max-width:46ch; margin-bottom:32px;}
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:2px;
+    text-decoration:none; font-weight:600; font-size:0.96rem;
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary{background:var(--rust); color:var(--white);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(168,92,63,0.3);}
+  .btn-ghost{background:transparent; color:var(--ink); border:1.5px solid var(--ink);}
+  .btn-ghost:hover{border-color:var(--rust); color:var(--rust);}
 
-    <link href="/dashboard/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/dashboard/stylesheets/all.css" rel="stylesheet" type="text/css" />
-    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  .arc-figure{position:relative; display:flex; align-items:center; justify-content:center;}
+  .arc-figure svg{width:100%; max-width:380px; height:auto;}
+  .arc-path{stroke-dasharray:660; stroke-dashoffset:660; animation:draw 1.8s ease forwards 0.3s;}
+  .arc-tick{opacity:0; animation:fadein 0.5s ease forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadein{to{opacity:1;}}
 
-    <script src="/dashboard/javascripts/modernizr.js" type="text/javascript"></script>
+  /* SECTION SHARED */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem); margin-top:14px;}
+  .section-head p{color:var(--ink-soft); margin-top:14px; font-size:1.02rem;}
 
+  /* ABOUT */
+  .about{background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start;}
+  .about-portrait{
+    aspect-ratio:4/5; background:linear-gradient(155deg, var(--sage), var(--ink));
+    border-radius:2px; position:relative; overflow:hidden;
+    display:flex; align-items:flex-end; padding:22px;
+  }
+  .about-portrait span{
+    font-family:'IBM Plex Mono',monospace; color:var(--sand); font-size:0.78rem; letter-spacing:0.05em;
+  }
+  .about-portrait::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), transparent 60%);
+  }
+  .credentials{list-style:none; margin-top:26px; display:grid; gap:14px;}
+  .credentials li{
+    display:flex; gap:14px; align-items:flex-start;
+    font-size:0.95rem; color:var(--ink-soft);
+    padding-bottom:14px; border-bottom:1px solid var(--line);
+  }
+  .credentials li strong{color:var(--ink); font-weight:600; min-width:140px; display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.78rem; letter-spacing:0.03em; text-transform:uppercase;}
 
-    <link href="/dashboard/images/favicon.png" rel="icon" type="image/png" />
+  /* SERVICES */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .service-card{
+    background:var(--white); border:1px solid var(--line); border-radius:2px;
+    padding:34px 28px; position:relative; transition:transform 0.25s, box-shadow 0.25s;
+  }
+  .service-card:hover{transform:translateY(-4px); box-shadow:0 16px 32px rgba(31,58,56,0.08);}
+  .service-card .num{font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:var(--rust); letter-spacing:0.05em;}
+  .service-card h3{font-size:1.25rem; margin:14px 0 12px;}
+  .service-card p{color:var(--ink-soft); font-size:0.95rem; margin-bottom:16px;}
+  .service-card ul{list-style:none; display:grid; gap:8px;}
+  .service-card ul li{font-size:0.88rem; color:var(--ink-soft); display:flex; gap:8px;}
+  .service-card ul li::before{content:"—"; color:var(--sage); flex-shrink:0;}
 
+  /* PROCESS */
+  .process{background:var(--ink); color:var(--sand);}
+  .process .section-head p{color:rgba(243,238,227,0.72);}
+  .process .eyebrow{color:var(--sage);}
+  .process .eyebrow::before{background:var(--sage);}
+  .process-list{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid rgba(243,238,227,0.18);}
+  .process-step{padding:28px 20px 28px 0; border-right:1px solid rgba(243,238,227,0.18);}
+  .process-step:last-child{border-right:none;}
+  .process-step .step-num{font-family:'IBM Plex Mono',monospace; font-size:1.6rem; color:var(--sage); display:block; margin-bottom:12px;}
+  .process-step h3{color:var(--sand); font-size:1.05rem; margin-bottom:8px;}
+  .process-step p{font-size:0.88rem; color:rgba(243,238,227,0.66);}
 
-  </head>
+  /* PRICING */
+  .pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .price-card{
+    background:var(--white); border:1px solid var(--line); border-radius:2px; padding:32px 26px;
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .price-card.featured{border-color:var(--rust); box-shadow:0 20px 40px rgba(168,92,63,0.14);}
+  .price-card h3{font-size:1.1rem;}
+  .price-amount{font-family:'Fraunces',serif; font-size:2.1rem; color:var(--rust); font-weight:600;}
+  .price-amount sup{font-family:'IBM Plex Mono',monospace; font-size:0.8rem; color:var(--ink-soft); font-weight:400;}
+  .price-note{font-size:0.86rem; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:14px;}
+  .price-tag{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--sage);}
 
-  <body class="index">
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=277385395761685";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <header class="header contain-to-grid">
-      <nav class="top-bar" data-topbar>
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="/dashboard/index.html">Apache Friends</a></h1>
-          </li>
-          <li class="toggle-topbar menu-icon">
-            <a href="#">
-              <span>Menu</span>
-            </a>
-          </li>
+  /* CONTACT */
+  .contact{background:var(--white); border-top:1px solid var(--line);}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+  .contact-cards{display:grid; gap:16px;}
+  .contact-card{
+    display:flex; align-items:center; gap:16px;
+    padding:20px 22px; border:1px solid var(--line); border-radius:2px;
+    text-decoration:none; color:var(--ink); transition:border-color 0.2s, background 0.2s;
+  }
+  .contact-card:hover{border-color:var(--rust); background:var(--sand);}
+  .contact-card .icon{
+    width:42px; height:42px; border-radius:50%; background:var(--sand);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .contact-card .icon svg{width:20px; height:20px; stroke:var(--rust);}
+  .contact-card .label{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:3px;}
+  .contact-card .value{font-weight:600; font-size:0.98rem;}
+  .hours{margin-top:8px; padding-top:24px; border-top:1px solid var(--line);}
+  .hours h3{font-size:1rem; margin-bottom:12px;}
+  .hours dl{display:grid; grid-template-columns:auto 1fr; gap:6px 18px; font-size:0.9rem;}
+  .hours dt{color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; font-size:0.82rem;}
+
+  footer{background:var(--ink); color:rgba(243,238,227,0.6); padding:32px 0; font-size:0.84rem;}
+  .footer-inner{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .arc-figure{order:-1; max-width:260px; margin:0 auto 12px;}
+    .about-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    .process-list{grid-template-columns:1fr 1fr;}
+    .process-step{border-right:none; border-bottom:1px solid rgba(243,238,227,0.18);}
+    .pricing-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M6 26 A16 16 0 0 1 26 6" stroke="#A85C3F" stroke-width="2.5" stroke-linecap="round"/><circle cx="6" cy="26" r="2.4" fill="#1F3A38"/><circle cx="26" cy="6" r="2.4" fill="#1F3A38"/></svg>
+      Kalama Occupational Therapy
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#process">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Book a consultation</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Occupational Therapy — Nairobi</p>
+        <h1>Restoring the movements and routines that make up <em>daily life</em></h1>
+        <p class="lead">Fredrick Kalama works with children and adults to rebuild function, independence, and confidence — through pediatric therapy, physical rehabilitation, and family-centred mental health support.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://wa.me/254115490470" target="_blank" rel="noopener">Message on WhatsApp</a>
+          <a class="btn btn-ghost" href="#services">View services</a>
+        </div>
+      </div>
+      <div class="arc-figure" aria-hidden="true">
+        <svg viewBox="0 0 300 300" fill="none">
+          <circle cx="150" cy="150" r="120" stroke="#E9E1D0" stroke-width="1.5"/>
+          <path class="arc-path" d="M 150 30 A 120 120 0 0 1 262 195" stroke="#A85C3F" stroke-width="3" stroke-linecap="round"/>
+          <g stroke="#7C9A82" stroke-width="2">
+            <line class="arc-tick" x1="150" y1="30" x2="150" y2="46" style="animation-delay:1.9s"/>
+            <line class="arc-tick" x1="220" y1="52" x2="212" y2="66" style="animation-delay:2.05s"/>
+            <line class="arc-tick" x1="262" y1="115" x2="246" y2="120" style="animation-delay:2.2s"/>
+            <line class="arc-tick" x1="270" y1="195" x2="254" y2="192" style="animation-delay:2.35s"/>
+          </g>
+          <circle cx="150" cy="150" r="5" fill="#1F3A38"/>
+          <text x="150" y="278" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#3A5654">RANGE OF MOTION, RESTORED</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal about-portrait">
+        <span>FREDRICK KALAMA<br>Occupational Therapist</span>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">About</p>
+        <h2>A clinician focused on function, not just diagnosis</h2>
+        <p style="color:var(--ink-soft); margin-top:16px; max-width:56ch;">Fredrick Kalama is an occupational therapist based in Nairobi, working with children and adults to close the gap between a diagnosis and daily life — whether that's a child learning to hold a pencil, an adult regaining hand strength after surgery, or a family navigating therapy together.</p>
+        <ul class="credentials">
+          <li><strong>Focus areas</strong> Pediatric development, physical dysfunction rehabilitation, family &amp; mental health support</li>
+          <li><strong>Approach</strong> Assessment-led, individualised intervention plans reviewed at every stage</li>
+          <li><strong>Setting</strong> In-clinic consultation and therapy sessions, Nairobi</li>
         </ul>
+      </div>
+    </div>
+  </section>
 
-        <section class="top-bar-section">
-          <!-- Left Nav Section -->
-          <ul class="left">
-              <li class="item "><a href="/dashboard/faq.html">FAQs</a></li>
-              <li class="item "><a href="/dashboard/howto.html">HOW-TO Guides</a></li>
-              <li class="item "><a target="_blank" href="/dashboard/phpinfo.php">PHPInfo</a></li>
-              <li class="item "><a href="/phpmyadmin/">phpMyAdmin</a></li>
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Services</p>
+        <h2>Three areas of practice, one aim: restored independence</h2>
+        <p>Every plan starts with a consultation to understand the person, not just the condition.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <span class="num">01 — Pediatric</span>
+          <h3>Pediatric Occupational Therapy</h3>
+          <p>Supporting children's developmental, sensory, and motor milestones so they can participate fully at home and school.</p>
+          <ul>
+            <li>Fine and gross motor skill development</li>
+            <li>Sensory processing support</li>
+            <li>School-readiness and handwriting</li>
+            <li>Play-based intervention</li>
           </ul>
-        </section>
-      </nav>
-    </header>
-
-    <div class="wrapper">
-      <div class="hero">
-  <div class="row">
-    <div class="large-12 columns">
-      <h1><img src="/dashboard/images/xampp-logo.svg" />XAMPP <span>Apache + MariaDB + PHP + Perl</span></h1>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <h2>Welcome to XAMPP for Windows 8.2.12</h2>
-  </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <p>
-      You have successfully installed XAMPP on this system! Now you can start using Apache, MariaDB, PHP and other components.
-      You can find more info in the <a href="/dashboard/faq.html">FAQs</a> section or check the <a href="/dashboard/howto.html">HOW-TO Guides</a> for getting started with PHP applications.
-    </p>
-    <p>
-      XAMPP is meant only for development purposes. It has certain configuration settings that make it easy to develop locally but that are insecure if you want to have your installation accessible to others.
-    </p>
-    <p>
-      Start the XAMPP Control Panel to check the server status.
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <h3>Community</h3>
-  </div>
-</div>
-<div class="row">
-  <div class="large-12 columns">
-    <p>
-      XAMPP has been around for more than 10 years &ndash; there is a huge community behind it. You can get involved by joining our <a href="https://community.apachefriends.org">Forums</a>, liking us on <a href="https://www.facebook.com/we.are.xampp">Facebook</a>, or following our exploits on <a href="https://twitter.com/apachefriends">Twitter</a>.
-    </p>
-  </div>
-</div>
-
-
-    </div>
-
-    <footer class="footer row">
-      <div class="columns">
-        <div class="footer_lists-container row collapse">
-          <div class="footer_social columns large-2">
-            <ul class="social">
-  <li class="twitter"><a href="https://twitter.com/apachefriends">Follow us on Twitter</a></li>
-  <li class="facebook"><a href="https://www.facebook.com/we.are.xampp">Like us on Facebook</a></li>
-</ul>
-
-            <p class="footer_copyright">Copyright (c) 2022, Apache Friends</p>
-          </div>
-          <ul class="footer_links columns large-9">
-            <li><a href="https://www.apachefriends.org/blog.html">Blog</a></li>
-            <li><a href="/privacy_policy.html">Privacy Policy</a></li>
-            <li>
-<a target="_blank" href="http://www.fastly.com/">                CDN provided by
-                <img width="48" data-2x="/dashboard/images/fastly-logo@2x.png" src="/dashboard/images/fastly-logo.png" />
-</a>            </li>
+        </div>
+        <div class="service-card reveal">
+          <span class="num">02 — Rehabilitation</span>
+          <h3>Physical Dysfunction Therapy</h3>
+          <p>Rebuilding strength, coordination, and independence after injury, surgery, or a physical condition affecting daily function.</p>
+          <ul>
+            <li>Post-injury and post-surgical rehab</li>
+            <li>Strength and coordination retraining</li>
+            <li>Adaptive strategies for daily tasks</li>
+            <li>Progress tracked against function goals</li>
+          </ul>
+        </div>
+        <div class="service-card reveal">
+          <span class="num">03 — Mental &amp; Family</span>
+          <h3>Mental &amp; Family Therapy</h3>
+          <p>Working with individuals and families together, since recovery and daily functioning are rarely one person's task alone.</p>
+          <ul>
+            <li>Family therapy sessions</li>
+            <li>Coping and routine-building strategies</li>
+            <li>Caregiver guidance and support</li>
+            <li>Ongoing, collaborative sessions</li>
           </ul>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <!-- JS Libraries -->
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/dashboard/javascripts/all.js" type="text/javascript"></script>
-  </body>
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">How it works</p>
+        <h2>From first consultation to ongoing therapy</h2>
+        <p>The same four-step path applies across pediatric, physical, and family therapy.</p>
+      </div>
+      <div class="process-list">
+        <div class="process-step reveal"><span class="step-num">01</span><h3>Consultation</h3><p>An initial assessment to understand the person's history, goals, and current function.</p></div>
+        <div class="process-step reveal"><span class="step-num">02</span><h3>Intervention plan</h3><p>A therapy plan built around specific, realistic function goals.</p></div>
+        <div class="process-step reveal"><span class="step-num">03</span><h3>Therapy sessions</h3><p>Regular hands-on sessions — pediatric, physical, or family-based.</p></div>
+        <div class="process-step reveal"><span class="step-num">04</span><h3>Review</h3><p>Progress reviewed and the plan adjusted as function improves.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Pricing</p>
+        <h2>Consultation and therapy fees</h2>
+        <p>Consultation fees are charged once at intake. Therapy session fees are discussed and confirmed after your consultation, based on your plan.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <span class="price-tag">Pediatric</span>
+          <h3>Pediatric Consultation</h3>
+          <div class="price-amount">KES 4,000</div>
+          <p class="price-note">Covers initial assessment. Therapy sessions are billed separately, confirmed at consultation.</p>
+        </div>
+        <div class="price-card featured reveal">
+          <span class="price-tag" style="color:var(--rust);">Physical Dysfunction</span>
+          <h3>Physical Dysfunction Consultation</h3>
+          <div class="price-amount">KES 5,000</div>
+          <p class="price-note">Covers initial assessment. Therapy sessions are billed separately, confirmed at consultation.</p>
+        </div>
+        <div class="price-card reveal">
+          <span class="price-tag">Mental &amp; Family</span>
+          <h3>Mental &amp; Family Therapy</h3>
+          <div class="price-amount">KES 4,000<sup> / session</sup></div>
+          <p class="price-note">Per therapy session. Family sessions can be scheduled together on request.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Book a consultation</h2>
+        <p style="color:var(--ink-soft); margin-top:14px; max-width:48ch;">Reach out by phone, WhatsApp, or email — whichever is easiest. Fredrick will confirm your consultation time directly.</p>
+        <div class="hours">
+          <h3>Availability</h3>
+          <dl>
+            <dt>Mon–Fri</dt><dd>By appointment</dd>
+            <dt>Sat</dt><dd>Limited slots — enquire</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="contact-cards reveal">
+        <a class="contact-card" href="tel:+254115490470">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><span class="label">Call</span><span class="value">0115 490470</span></span>
+        </a>
+        <a class="contact-card" href="tel:+254106675003">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><span class="label">Call (alt.)</span><span class="value">0106 675003</span></span>
+        </a>
+        <a class="contact-card" href="https://wa.me/254115490470" target="_blank" rel="noopener">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+          <span><span class="label">WhatsApp</span><span class="value">0115 490470</span></span>
+        </a>
+        <a class="contact-card" href="mailto:Kalamafredrick42@gmail.com">
+          <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+          <span><span class="label">Email</span><span class="value">Kalamafredrick42@gmail.com</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Fredrick Kalama — Occupational Therapy, Nairobi</span>
+    <span>Consultation, pediatric, physical dysfunction &amp; family therapy</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
 </html>
